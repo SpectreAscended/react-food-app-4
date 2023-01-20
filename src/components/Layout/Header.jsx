@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './Header.module.css';
 import headerImg from '../../assets/meals.jpg';
 import HeaderCartButton from './HeaderCartButton';
+import Cart from '../Cart/Cart';
 
 const Header = () => {
   return (
@@ -13,6 +14,7 @@ const Header = () => {
       <div className={classes['main-image']}>
         <img src={headerImg} alt="Table with a variety of delicious foods" />
       </div>
+      <Cart />
     </>
   );
 };
