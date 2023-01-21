@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Modal from '../UI/Modal';
 import classes from './Cart.module.css';
 import CartItem from './CartItem';
 import CartContext from '../../store/cartContext';
 
 const Cart = props => {
+  const [cartHasItems, setCartHasItems] = useState(false);
+
   const cartCtx = useContext(CartContext);
 
   const { items } = cartCtx;
@@ -19,6 +21,14 @@ const Cart = props => {
   const removeItemHandler = id => {
     cartCtx.removeFromCart(id);
   };
+
+  useEffect(() => {
+    if (items.length > 0) {
+      setCartHasItems(true);
+    } else {
+      setCartHasItems(false);
+    }
+  }, [items]);
 
   const cartItems = items.map(item => (
     <CartItem
@@ -47,7 +57,7 @@ const Cart = props => {
         >
           Cancel
         </button>
-        <button className={classes.button}>Order</button>
+        {cartHasItems && <button className={classes.button}>Order</button>}
       </div>
     </Modal>
   );
