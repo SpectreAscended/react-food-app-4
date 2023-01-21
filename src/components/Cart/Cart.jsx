@@ -9,15 +9,6 @@ const Cart = props => {
 
   const { items } = cartCtx;
 
-  const DUMMY_CART_ITEMS = [
-    {
-      id: '1',
-      name: 'hotdogs',
-      price: 3.5,
-      amount: 1,
-    },
-  ];
-
   const cartItems = items.map(item => (
     <CartItem
       key={item.id}
