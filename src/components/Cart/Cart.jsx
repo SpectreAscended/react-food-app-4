@@ -9,6 +9,13 @@ const Cart = props => {
 
   const { items } = cartCtx;
 
+  const addItemHandler = item => {
+    cartCtx.addToCart({
+      ...item,
+      amount: 1,
+    });
+  };
+
   const cartItems = items.map(item => (
     <CartItem
       key={item.id}
@@ -16,6 +23,7 @@ const Cart = props => {
       name={item.name}
       price={item.price}
       amount={item.amount}
+      onAdd={addItemHandler.bind(null, item)}
     />
   ));
 
