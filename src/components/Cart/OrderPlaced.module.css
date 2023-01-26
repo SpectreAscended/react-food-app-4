@@ -5,6 +5,7 @@
 
 .order-placed span {
   font-size: 2rem;
+  margin-bottom: 5rem;
   display: block;
 }
 
@@ -12,7 +13,6 @@
   display: flex;
   justify-content: flex-end;
   margin-right: 5rem;
-  margin-top: 5rem;
 }
 
 .order-placed button {

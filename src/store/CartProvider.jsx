@@ -34,7 +34,7 @@ const cartReducer = (state, action) => {
     return {
       ...state,
       items: updatedItems,
-      totalAmount: Math.abs(updatedTotalAmount),
+      totalAmount: Math.abs(updatedTotalAmount.toFixed(2)),
     };
   }
 
@@ -59,7 +59,7 @@ const cartReducer = (state, action) => {
     return {
       ...state,
       items: updatedItems,
-      totalAmount: Math.abs(updatedTotalAmount),
+      totalAmount: Math.abs(updatedTotalAmount.toFixed(2)),
     };
   }
 

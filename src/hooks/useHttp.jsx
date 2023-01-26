@@ -15,7 +15,7 @@ const useHttp = () => {
         options = {
           method: requestConfig.method,
           headers: requestConfig.headers,
-          body: requestConfig.body,
+          body: JSON.stringify(requestConfig.body),
         };
       }
 
