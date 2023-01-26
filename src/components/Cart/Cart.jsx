@@ -3,9 +3,11 @@ import Modal from '../UI/Modal';
 import classes from './Cart.module.css';
 import CartItem from './CartItem';
 import CartContext from '../../store/cartContext';
+import Checkout from './Checkout';
 
 const Cart = props => {
   const [cartHasItems, setCartHasItems] = useState(false);
+  const [checkoutShown, setCheckoutShown] = useState(false);
 
   const cartCtx = useContext(CartContext);
 
@@ -42,23 +44,36 @@ const Cart = props => {
     />
   ));
 
+  const showCheckoutHandler = () => {
+    setCheckoutShown(prev => !prev);
+  };
+
   return (
     <Modal onClick={props.onShowCart}>
-      <ul className={classes['cart-items']}>{cartItems}</ul>
-      <div className={classes.total}>
-        <span>Total</span>
-        <span>${cartCtx.totalAmount.toFixed(2)}</span>
-      </div>
-      <div className={classes.actions}>
-        <button
-          className={classes['button--alt']}
-          type="button"
-          onClick={props.onShowCart}
-        >
-          Cancel
-        </button>
-        {cartHasItems && <button className={classes.button}>Order</button>}
-      </div>
+      {!checkoutShown && (
+        <>
+          <ul className={classes['cart-items']}>{cartItems}</ul>
+          <div className={classes.total}>
+            <span>Total</span>
+            <span>${cartCtx.totalAmount.toFixed(2)}</span>
+          </div>
+          <div className={classes.actions}>
+            <button
+              className={classes['button--alt']}
+              type="button"
+              onClick={props.onShowCart}
+            >
+              Cancel
+            </button>
+            {cartHasItems && (
+              <button className={classes.button} onClick={showCheckoutHandler}>
+                Order
+              </button>
+            )}
+          </div>
+        </>
+      )}
+      {checkoutShown && <Checkout onShowCheckout={showCheckoutHandler} />}
     </Modal>
   );
 };
