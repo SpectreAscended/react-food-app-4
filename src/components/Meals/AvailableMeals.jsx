@@ -7,14 +7,6 @@ import useHttp from '../../hooks/useHttp';
 
 const AvailableMeals = () => {
   const [mealsData, setMealsData] = useState([]);
-  useEffect(() => {
-    const data = useHttp(
-      {
-        url: 'https://react-http-41004-default-rtdb.firebaseio.com/meals.json',
-      },
-      handleHttpData
-    );
-  }, []);
 
   const handleHttpData = data => {
     const loadedMeals = [];
@@ -29,43 +21,24 @@ const AvailableMeals = () => {
     setMealsData(loadedMeals);
   };
 
+  const fetchData = useHttp();
+
+  const { sendRequest, isLoading, error } = fetchData;
+
+  console.log(fetchData);
+
+  useEffect(() => {
+    sendRequest(
+      {
+        url: 'https://react-http-41004-default-rtdb.firebaseio.com/meals.json',
+      },
+      handleHttpData
+    );
+  }, []);
+
   console.log(mealsData);
-  // setMealsData(DUMMY_MEALS);
 
-  // useEffect(() => {
-  //   const retreiveMeals = async () => {
-  //     try {
-  //       const res = await fetch(
-  //         'https://react-http-41004-default-rtdb.firebaseio.com/meals.json'
-  //       );
-
-  //       if (!res.ok) throw new Error('Something went wrong');
-
-  //       const data = await res.json();
-
-  //       const loadedMeals = [];
-
-  //       for (const key in data) {
-  //         loadedMeals.push({
-  //           id: key,
-  //           name: data[key].name,
-  //           description: data[key].description,
-  //           price: data[key].price,
-  //         });
-  //       }
-
-  //       setMealsData(loadedMeals);
-  //       console.log(data);
-  //       console.log(loadedMeals);
-  //     } catch (err) {
-  //       console.error(err.message);
-  //     }
-  //   };
-
-  //   retreiveMeals();
-  // }, []);
-
-  const meals = DUMMY_MEALS.map(meal => (
+  const meals = mealsData.map(meal => (
     <MealItem
       key={meal.id}
       id={meal.id}
@@ -79,6 +52,8 @@ const AvailableMeals = () => {
     <div className={classes.meals}>
       <Card>
         <ul>{meals}</ul>
+        {isLoading && <p className={classes.loading}>Loading...</p>}
+        {error && <p className={classes.error}>{error}</p>}
       </Card>
     </div>
   );
