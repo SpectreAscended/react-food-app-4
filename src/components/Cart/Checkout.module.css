@@ -5,10 +5,7 @@
 
 .checkout h2 {
   color: #5a1a01;
-}
-
-.form-control {
-  margin-bottom: 3rem;
+  font-size: 1.6rem;
 }
 
 .form-control input {
@@ -16,6 +13,32 @@
   padding: 0.5rem;
   font-size: 1rem;
   display: block;
+  margin: 0.5rem 0 1rem;
+}
+
+.form-control.invalid label {
+  color: #c00202;
+}
+
+.form-control.invalid input {
+  border: solid 1px red;
+  background: rgba(250, 127, 113, 0.541);
+}
+
+.form-control p {
+  display: none;
+}
+
+.form-control.invalid p {
+  display: block;
+  margin-top: -1rem;
+  color: #c00202;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.6rem;
   margin-bottom: 1rem;
 }
 
@@ -31,6 +54,13 @@
   padding: 0.5rem 2rem;
   border-radius: 25px;
   margin-left: 1rem;
+}
+
+.actions button:disabled {
+  background-color: #ccc;
+  border: solid 1px #ccc;
+  color: #333;
+  cursor: not-allowed;
 }
 
 .actions button:hover,

@@ -73,7 +73,12 @@ const Cart = props => {
           </div>
         </>
       )}
-      {checkoutShown && <Checkout onShowCheckout={showCheckoutHandler} />}
+      {checkoutShown && (
+        <Checkout
+          onShowCheckout={showCheckoutHandler}
+          onShowCart={props.onShowCart}
+        />
+      )}
     </Modal>
   );
 };
