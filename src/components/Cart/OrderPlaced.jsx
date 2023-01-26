@@ -5,6 +5,8 @@ import CartContext from '../../store/cartContext';
 const OrderPlaced = props => {
   const cartCtx = useContext(CartContext);
 
+  console.log(cartCtx);
+
   useEffect(() => {
     cartCtx.clearCart();
   }, []);

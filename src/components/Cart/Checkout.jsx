@@ -58,7 +58,14 @@ const Checkout = props => {
     e.preventDefault();
     if (!formIsValid) return;
 
-    console.log(enteredFirstName, enteredLastName, enteredAddress, enteredCity);
+    const customer = {
+      firstName: enteredFirstName,
+      lastName: enteredLastName,
+      address: enteredAddress,
+      city: enteredCity,
+    };
+
+    cartCtx.addCustomer(customer);
     setOrderPlaced(true);
     resetFirstName();
     resetlastName();
