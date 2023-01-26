@@ -7,6 +7,7 @@ const useHttp = () => {
   const sendRequest = useCallback(async (requestConfig, applyData) => {
     try {
       setIsLoading(true);
+      setError(null);
       let options;
       if (!requestConfig.method) {
         options = {};
@@ -23,7 +24,9 @@ const useHttp = () => {
       if (!res.ok) throw new Error(`Something went wrong (${res.status})`);
 
       const data = await res.json();
+
       setIsLoading(false);
+
       applyData(data);
     } catch (err) {
       console.error(err.message);

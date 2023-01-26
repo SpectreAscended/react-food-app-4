@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import classes from './AvailableMeals.module.css';
 import MealItem from './MealItems/MealItem';
 import Card from '../UI/Card';
-import DUMMY_MEALS from '../../store/dummyMeals';
 import useHttp from '../../hooks/useHttp';
 
 const AvailableMeals = () => {
@@ -25,8 +24,6 @@ const AvailableMeals = () => {
 
   const { sendRequest, isLoading, error } = fetchData;
 
-  console.log(fetchData);
-
   useEffect(() => {
     sendRequest(
       {
@@ -35,8 +32,6 @@ const AvailableMeals = () => {
       handleHttpData
     );
   }, []);
-
-  console.log(mealsData);
 
   const meals = mealsData.map(meal => (
     <MealItem
