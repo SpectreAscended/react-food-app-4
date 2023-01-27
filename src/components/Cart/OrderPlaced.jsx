@@ -8,15 +8,11 @@ const OrderPlaced = props => {
 
   const { isLoading, error, sendRequest } = useHttp();
 
-  console.log(cartCtx);
-
   const order = {
     customer: cartCtx.customerInfo,
     items: cartCtx.items,
     totalAmount: cartCtx.totalAmount,
   };
-
-  console.log(order);
 
   const requestConfig = {
     url: 'https://react-http-41004-default-rtdb.firebaseio.com/orders.json',
@@ -28,7 +24,7 @@ const OrderPlaced = props => {
   };
 
   useEffect(() => {
-    sendRequest(requestConfig, null);
+    sendRequest(requestConfig);
     cartCtx.clearCart();
     const timer = setTimeout(() => {
       props.onShowCart();
