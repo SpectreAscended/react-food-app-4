@@ -6,12 +6,13 @@ import CartContext from '../../store/cartContext';
 import Checkout from './Checkout';
 
 const Cart = props => {
-  const [cartHasItems, setCartHasItems] = useState(false);
   const [checkoutShown, setCheckoutShown] = useState(false);
 
   const cartCtx = useContext(CartContext);
 
   const { items } = cartCtx;
+
+  const cartHasItems = items.length > 0;
 
   const addItemHandler = item => {
     cartCtx.addToCart({
@@ -23,14 +24,6 @@ const Cart = props => {
   const removeItemHandler = id => {
     cartCtx.removeFromCart(id);
   };
-
-  useEffect(() => {
-    if (items.length > 0) {
-      setCartHasItems(true);
-    } else {
-      setCartHasItems(false);
-    }
-  }, [items]);
 
   const cartItems = items.map(item => (
     <CartItem

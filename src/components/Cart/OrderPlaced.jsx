@@ -39,7 +39,7 @@ const OrderPlaced = props => {
     <>
       <div className={classes['order-placed']}>
         {isLoading && <span>Placing order...</span>}
-        {!isLoading && <span>Order Placed! Thank you.</span>}
+        {!isLoading && <span>Order Recieved! Thank you.</span>}
         {!isLoading && (
           <div className={classes.actions}>
             <button type="button" onClick={props.onShowCart}>
